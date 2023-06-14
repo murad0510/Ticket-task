@@ -1,0 +1,60 @@
+﻿CREATE DATABASE TravelDB
+GO
+USE TravelDB
+GO
+
+CREATE TABLE FlightTypes(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(50) NOT NULL,
+)
+GO
+CREATE TABLE Cities(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(50) NOT NULL,
+[Distance] MONEY NOT NULL,
+)
+GO
+CREATE TABLE Schedules(  
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[CityId] INT FOREIGN KEY REFERENCES Cities(Id) ON DELETE SET NULL,
+[StartDateTime] DATE NOT NULL,
+)
+GO
+CREATE TABLE Pilots(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(50) NOT NULL,
+[Surname] NVARCHAR(50) NOT NULL,
+)
+GO
+CREATE TABLE Airplanes(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(50) NOT NULL,
+[PilotId] INT FOREIGN KEY REFERENCES Pilots(Id) ON DELETE SET NULL,
+[ScheduleId] INT FOREIGN KEY REFERENCES Schedules(Id) ON DELETE SET NULL,
+[FlightTypeId] INT FOREIGN KEY REFERENCES FlightTypes(Id) ON DELETE SET NULL,
+)
+GO
+CREATE TABLE Tickets(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[AirplaneId] INT FOREIGN KEY REFERENCES Airplanes(Id) ON DELETE SET NULL,
+)
+
+GO
+
+INSERT INTO FlightTypes([Name])
+VALUES('Eco'),('Business'),('Premium')
+GO
+INSERT INTO Cities([Name],[Distance])
+VALUES('Baku',2009),('Paris',3000),('Berlin',4000)
+GO
+INSERT INTO Schedules([CityId],[StartDateTime])
+VALUES(1,'01-01-2022'),(2,'10-03-2023'),(3,'03-04-2020')
+GO
+INSERT INTO Pilots([Name],[Surname])
+VALUES('Hande','Ozdilim'),('Umid','Agayev'),('Yaver','Ismayilov')
+GO
+INSERT INTO Airplanes([Name],[PilotId],[ScheduleId],[FlightTypeId])
+VALUES('Azal',1,1,1),('Airfloat',2,2,2),('Turk hava yollari',3,3,3)
+GO
+INSERT INTO Tickets([AirplaneId])
+VALUES(1),(2),(3)
