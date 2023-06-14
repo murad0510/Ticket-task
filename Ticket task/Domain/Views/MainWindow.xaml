@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ticket_task"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"  Height="450" Width="1100" ResizeMode="NoResize">
     <Grid>
         <Image Source="/Images/World_map.png"></Image>
 
@@ -18,8 +18,37 @@
                 <Label Content="Schedules" FontSize="20" Canvas.Top="150" Canvas.Left="30"></Label>
                 <ComboBox ItemsSource="{Binding SchedulesItemSource}" Width="170" Canvas.Top="190" Canvas.Left="35"></ComboBox>
 
-                <Label Content="Airplanes" FontSize="20" Canvas.Top="270" Canvas.Left="30"></Label>
-                <ComboBox ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="310" Canvas.Left="35"></ComboBox>
+                <Label Content="Airplanes" FontSize="20" Canvas.Top="30" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <ComboBox ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
+
+                <Label Content="Flight type" FontSize="20" Canvas.Top="30" Canvas.Left="814" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <ComboBox ItemsSource="{Binding FlightTypeItemSource}" Width="170" Canvas.Top="70" Canvas.Left="828" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
+
+                <Label Content="Pilot name" FontSize="20" Canvas.Top="156" Canvas.Left="400"></Label>
+                <Label Content="{Binding PilotName}" Canvas.Top="201" Canvas.Left="400" Width="200" Background="White" FontSize="20" BorderThickness="3" BorderBrush="Black"></Label>
+
+                <Label Content="Pilot surname" FontSize="20" Canvas.Top="156" Canvas.Left="749"></Label>
+                <Label Content="{Binding PilotSurname}" Canvas.Top="201" Canvas.Left="749" Width="200" Background="White" FontSize="20" BorderThickness="3" BorderBrush="Black"></Label>
+
+                <Button Command="{Binding PurchaseButton}" Width="200" Height="60" Content="Purchase" FontSize="40" Canvas.Bottom="30" Canvas.Left="35" Canvas.Top="310">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Background="Black" Width="820" Height="5" Canvas.Top="140" Canvas.Left="280"></TextBlock>
+
+                <TextBlock Background="Black" Width="820" Height="5" Canvas.Top="250" Canvas.Left="280"></TextBlock>
+
+                <TextBlock Width="294" Background="Black" Height="5" Canvas.Left="280" Canvas.Top="140" >
+                    <TextBlock.RenderTransform>
+                        <RotateTransform Angle="90"></RotateTransform>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <ListBox ItemsSource="{Binding TicketsItemSource}" Width="807" Height="162" Canvas.Bottom="0" Canvas.Right="0" Background="Transparent"></ListBox>
 
             </Canvas>
         </Grid>
