@@ -8,5 +8,20 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Image Source="/Images/World_map.png"></Image>
+
+        <Grid>
+            <Image Source="/Images/World_map.png"></Image>
+            <Canvas>
+                <Label Content="Cities" FontSize="20" Canvas.Top="30" Canvas.Left="30"></Label>
+                <ComboBox ItemsSource="{Binding CitiesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="35"></ComboBox>
+
+                <Label Content="Schedules" FontSize="20" Canvas.Top="150" Canvas.Left="30"></Label>
+                <ComboBox ItemsSource="{Binding SchedulesItemSource}" Width="170" Canvas.Top="190" Canvas.Left="35"></ComboBox>
+
+                <Label Content="Airplanes" FontSize="20" Canvas.Top="270" Canvas.Left="30"></Label>
+                <ComboBox ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="310" Canvas.Left="35"></ComboBox>
+
+            </Canvas>
+        </Grid>
     </Grid>
 </Window>

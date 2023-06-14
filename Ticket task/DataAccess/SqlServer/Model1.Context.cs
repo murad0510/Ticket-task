@@ -13,10 +13,10 @@ namespace Ticket_task.DataAccess.SqlServer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TravelDBEntities1 : DbContext
+    public partial class TravelDBEntities3 : DbContext
     {
-        public TravelDBEntities1()
-            : base("name=TravelDBEntities1")
+        public TravelDBEntities3()
+            : base("name=TravelDBEntities3")
         {
         }
     
