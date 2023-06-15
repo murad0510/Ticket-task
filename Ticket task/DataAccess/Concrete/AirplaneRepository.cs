@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,17 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class AirplaneRepository : IAirplaneRepository
     {
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public AirplaneRepository()
         {
-            _context = new TravelDBEntities3();
+            _context = new TravelDBEntities4();
         }
 
         public void AddData(Airplane data)
         {
-            _context.Airplanes.Add(data);
+            //_context.Airplanes.Add(data);
+            _context.Entry(data).State = EntityState.Added;
             _context.SaveChanges();
         }
 
@@ -32,14 +34,20 @@ namespace Ticket_task.DataAccess.Concrete
         public ObservableCollection<Airplane> GetAll()
         {
             var resul = from a in _context.Airplanes
+                        //.Include(nameof(Airplane.Schedule))
+                        //.Include(nameof(Airplane.PilotId))
+
                         select a;
 
-            return new ObservableCollection<Airplane>(resul);
+            return new ObservableCollection<Airplane>(resul.Distinct());
         }
 
         public Airplane GetData(int id)
         {
-            throw new NotImplementedException();
+            var airplanes = GetAll();
+            var airplane = airplanes.FirstOrDefault(c => c.Id == id);
+
+            return airplane;
         }
 
         public void UpdateData(Airplane data)

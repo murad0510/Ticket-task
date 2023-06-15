@@ -11,11 +11,11 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class TicketRepository : ITicketRepository
     {
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public TicketRepository()
         {
-            _context = new TravelDBEntities3();
+            _context = new TravelDBEntities4();
         }
 
         public void AddData(Ticket data)
@@ -32,6 +32,8 @@ namespace Ticket_task.DataAccess.Concrete
         public ObservableCollection<Ticket> GetAll()
         {
             var result = from t in _context.Tickets
+                         //.Include(nameof(Ticket.Airplane))
+                         //.Include(nameof(Ticket.FlightType))
                          select t;
 
             return new ObservableCollection<Ticket>(result);
@@ -39,7 +41,10 @@ namespace Ticket_task.DataAccess.Concrete
 
         public Ticket GetData(int id)
         {
-            throw new NotImplementedException();
+            var airplanes = GetAll();
+            var airplane = airplanes.FirstOrDefault(c => c.Id == id);
+
+            return airplane;
         }
 
         public void UpdateData(Ticket data)

@@ -11,12 +11,22 @@ namespace Ticket_task.DataAccess.SqlServer
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Ticket
     {
         public int Id { get; set; }
         public Nullable<int> AirplaneId { get; set; }
-    
+        public Nullable<int> FlightTypeId { get; set; }
+
         public virtual Airplane Airplane { get; set; }
+        public virtual FlightType FlightType { get; set; }
+
+        public override string ToString()
+        {
+            //return $"{Airplane.Name} - {Airplane.Pilot.Name} - {Airplane.Pilot.Surname} - {Airplane.Schedule.StartDateTime} - {Airplane.Schedule.City.Name}";
+
+            return $"{Id} - {FlightType.Name}";
+
+        }
     }
 }

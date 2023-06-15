@@ -29,5 +29,9 @@ namespace Ticket_task.Domain.Services
             _repository.AddData(ticket);
         }
 
+        public Ticket GetTicket(int id)
+        {
+            return _repository.GetData(id);
+        }
     }
 }

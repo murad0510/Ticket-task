@@ -11,11 +11,11 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class PilotRepository : IPilotRepository
     {
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public PilotRepository()
         {
-            _context = new TravelDBEntities3();
+            _context = new TravelDBEntities4();
         }
 
         public void AddData(Pilot data)

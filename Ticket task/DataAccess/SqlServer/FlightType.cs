@@ -17,13 +17,13 @@ namespace Ticket_task.DataAccess.SqlServer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FlightType()
         {
-            this.Airplanes = new HashSet<Airplane>();
+            this.Tickets = new HashSet<Ticket>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Airplane> Airplanes { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

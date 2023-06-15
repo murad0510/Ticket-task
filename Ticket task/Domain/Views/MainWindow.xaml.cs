@@ -24,7 +24,7 @@ namespace Ticket_task
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel mainWindowViewModel= new MainWindowViewModel();
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
             this.DataContext = mainWindowViewModel;
         }
     }

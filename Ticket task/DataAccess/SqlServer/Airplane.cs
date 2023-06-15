@@ -24,9 +24,7 @@ namespace Ticket_task.DataAccess.SqlServer
         public string Name { get; set; }
         public Nullable<int> PilotId { get; set; }
         public Nullable<int> ScheduleId { get; set; }
-        public Nullable<int> FlightTypeId { get; set; }
     
-        public virtual FlightType FlightType { get; set; }
         public virtual Pilot Pilot { get; set; }
         public virtual Schedule Schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,11 +12,11 @@ namespace Ticket_task.DataAccess.Concrete
     public class ScheduleRepository : IScheduleRepository
     {
 
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public ScheduleRepository()
         {
-            _context= new TravelDBEntities3();
+            _context= new TravelDBEntities4();
         }
 
         public void AddData(Schedule data)
@@ -32,6 +32,7 @@ namespace Ticket_task.DataAccess.Concrete
         public ObservableCollection<Schedule> GetAll()
         {
             var result = from s in _context.Schedules
+                         //.Include(nameof(Schedule.City))
                          select s;
 
             return new ObservableCollection<Schedule>(result);

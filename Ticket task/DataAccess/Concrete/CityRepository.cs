@@ -11,11 +11,11 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class CityRepository : ICityRepository
     {
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public CityRepository()
         {
-            _context = new TravelDBEntities3();
+            _context = new TravelDBEntities4();
         }
         public void AddData(City data)
         {

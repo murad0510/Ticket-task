@@ -11,11 +11,11 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class FlightTypeRepository : IFlightTypeRepository
     {
-        private TravelDBEntities3 _context;
+        private TravelDBEntities4 _context;
 
         public FlightTypeRepository()
         {
-            _context = new TravelDBEntities3();
+            _context = new TravelDBEntities4();
         }
 
         public void AddData(FlightType data)

@@ -12,19 +12,20 @@ namespace Ticket_task.DataAccess.SqlServer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class TravelDBEntities3 : DbContext
+
+    public partial class TravelDBEntities4 : DbContext
     {
-        public TravelDBEntities3()
-            : base("name=TravelDBEntities3")
+        public TravelDBEntities4()
+            : base("name=TravelDBEntities4")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Airplane> Airplanes { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<FlightType> FlightTypes { get; set; }

@@ -20,9 +20,9 @@ namespace Ticket_task.Domain.ViewModels
         public RelayCommand SelectionChangedAirplanes { get; set; }
 
 
-        private ObservableCollection<string> ticketsItemSource;
+        private ObservableCollection<Ticket> ticketsItemSource;
 
-        public ObservableCollection<string> TicketsItemSource
+        public ObservableCollection<Ticket> TicketsItemSource
         {
             get { return ticketsItemSource; }
             set { ticketsItemSource = value; OnPropertyChanged(); }
@@ -170,47 +170,62 @@ namespace Ticket_task.Domain.ViewModels
             FlightTypeItemSource = _flightTypeService.GetAllFlightTypes();
 
             var tickets = _ticketService.GetTickets();
-            TicketsItemSource = new ObservableCollection<string>();
 
-            for (int i = 0; i < tickets.Count; i++)
-            {
-                var s = "";
-                //s.Add(tickets[i].Airplane.);
-                s += tickets[i].Airplane.Name;
+            TicketsItemSource = tickets;
 
-                s += " - ";
-
-                s += tickets[i].Airplane.Pilot.Name;
-
-                s += " - ";
-
-                s += tickets[i].Airplane.Pilot.Surname;
-
-                s += " - ";
-
-                s += tickets[i].Airplane.Schedule.StartDateTime.ToString();
-
-
-                TicketsItemSource.Add(s);
-            }
 
             PurchaseButton = new RelayCommand((obj) =>
             {
-                //var pilot = _pilotServie.GetPilot((int)Airplane.PilotId);
-
                 Airplane airplane = new Airplane();
                 airplane.ScheduleId = ScheduleSelectedItem.Id;
-                airplane.FlightTypeId = FlightType.Id;
+                //airplane.Schedule = ScheduleSelectedItem;
+                //airplane.Schedule.CityId= CitySelectedItem.Id;
+                //airplane.Schedule.City = CitySelectedItem;
+                airplane.Name = Airplane.Name;
                 airplane.PilotId = Airplane.PilotId;
+                //airplane.Tickets = TicketsItemSource;
+                //airplane.Pilot = Airplane.Pilot;
 
                 _airplaneService.AddAirplane(airplane);
 
                 Ticket ticket = new Ticket();
+                ticket.FlightTypeId = FlightType.Id;
                 ticket.AirplaneId = airplane.Id;
 
                 _ticketService.AddTicket(ticket);
+
+                var gettickets = _ticketService.GetTickets();
+
+                TicketsItemSource = gettickets;
                 MessageBox.Show("Successfully");
             });
         }
+
+        //public void Get()
+        //{
+        //    //TicketsItemSource = new ObservableCollection<string>();
+
+        //    //for (int i = 0; i < tickets.Count; i++)
+        //    //{
+        //    //    var s = "";
+        //    //    //s.Add(tickets[i].Airplane.);
+        //    //    var airplane = _airplaneService.AirplaneGetById(tickets[i].Airplane.Id);
+        //    //    s += tickets[i].Airplane.Name;
+
+        //    //    s += " - ";
+
+        //    //    s += tickets[i].Airplane.Pilot.Name;
+
+        //    //    s += " - ";
+
+        //    //    s += tickets[i].Airplane.Pilot.Surname;
+
+        //    //    s += " - ";
+
+        //    //    s += tickets[i].Airplane.Schedule.StartDateTime.ToString();
+
+
+        //    //}
+        //}
     }
 }
