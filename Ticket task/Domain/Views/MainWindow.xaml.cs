@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ticket_task.Domain.ViewModels;
 
 namespace Ticket_task
 {
@@ -23,6 +24,8 @@ namespace Ticket_task
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel mainWindowViewModel= new MainWindowViewModel();
+            this.DataContext = mainWindowViewModel;
         }
     }
 }
