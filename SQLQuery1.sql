@@ -1,4 +1,4 @@
-﻿CREATE DATABASE TravelDB
+CREATE DATABASE TravelDB
 GO
 USE TravelDB
 GO
@@ -54,8 +54,8 @@ GO
 INSERT INTO Pilots([Name],[Surname])
 VALUES('Hande','Ozdilim'),('Umid','Agayev'),('Yaver','Ismayilov')
 GO
-INSERT INTO Airplanes([Name],[PilotId])
-VALUES('Azal',1),('Turk hava yollari',2),('Airfloat',2),('Azal',1),('Turk hava yollari',3),('Azal',2),('Airfloat',3),('Turk hava yollari',1),('Airfloat',2),('Azal',3),('Turk hava yollari',2),('Azal',2)
+INSERT INTO Airplanes([Name],[PilotId],[ScheduleId])
+VALUES('Azal',1,1),('Turk hava yollari',2,1),('Airfloat',2,2),('Azal',1,2),('Turk hava yollari',3,3),('Azal',2,4),('Airfloat',3,5),('Turk hava yollari',1,9),('Airfloat',2,6),('Azal',3,7),('Turk hava yollari',2,8),('Azal',2,8)
 GO
 INSERT INTO Tickets([AirplaneId],[FlightTypeId],[ScheduleId])
-VALUES(1,1,1),(2,2,1),(3,3,2),(1,2,2),(4,3,4),(5,1,7),(10,2,4)
+VALUES(1,1,1),(2,1,3),(3,2,2)
