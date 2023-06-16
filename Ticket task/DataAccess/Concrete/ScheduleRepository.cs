@@ -40,7 +40,10 @@ namespace Ticket_task.DataAccess.Concrete
 
         public Schedule GetData(int id)
         {
-            throw new NotImplementedException();
+            var schedule = GetAll();
+            var schedules = schedule.FirstOrDefault(c => c.Id == id);
+
+            return schedules;
         }
 
         public void UpdateData(Schedule data)

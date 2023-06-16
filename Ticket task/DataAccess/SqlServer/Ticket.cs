@@ -11,6 +11,7 @@ namespace Ticket_task.DataAccess.SqlServer
 {
     using System;
     using System.Collections.Generic;
+    using Ticket_task.Domain.Services;
 
     public partial class Ticket
     {
@@ -21,11 +22,16 @@ namespace Ticket_task.DataAccess.SqlServer
         public virtual Airplane Airplane { get; set; }
         public virtual FlightType FlightType { get; set; }
 
+        private SchedulesService SchedulesService { get; set; }
+
+
         public override string ToString()
         {
-            //return $"{Airplane.Name} - {Airplane.Pilot.Name} - {Airplane.Pilot.Surname} - {Airplane.Schedule.StartDateTime} - {Airplane.Schedule.City.Name}";
+            SchedulesService = new SchedulesService();
+            var schedule = SchedulesService.GetScheduleById((int)Airplane.ScheduleId);
+            return $"{Airplane.Name} - {Airplane.Pilot.Name} - {schedule.StartDateTime}";
 
-            return $"{Id} - {FlightType.Name}";
+            //return $"{Id} - {FlightType.Name}";
 
         }
     }

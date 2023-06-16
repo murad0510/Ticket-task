@@ -176,27 +176,34 @@ namespace Ticket_task.Domain.ViewModels
 
             PurchaseButton = new RelayCommand((obj) =>
             {
+
                 Airplane airplane = new Airplane();
+
                 airplane.ScheduleId = ScheduleSelectedItem.Id;
-                //airplane.Schedule = ScheduleSelectedItem;
-                //airplane.Schedule.CityId= CitySelectedItem.Id;
-                //airplane.Schedule.City = CitySelectedItem;
-                airplane.Name = Airplane.Name;
+
                 airplane.PilotId = Airplane.PilotId;
-                //airplane.Tickets = TicketsItemSource;
                 //airplane.Pilot = Airplane.Pilot;
+
+                //airplane.Schedule.CityId = CitySelectedItem.Id;
+                //airplane.Schedule.City = CitySelectedItem;
+
+                airplane.Name = Airplane.Name;
 
                 _airplaneService.AddAirplane(airplane);
 
+
                 Ticket ticket = new Ticket();
                 ticket.FlightTypeId = FlightType.Id;
+
                 ticket.AirplaneId = airplane.Id;
+                ticket.Airplane = airplane;
 
                 _ticketService.AddTicket(ticket);
 
                 var gettickets = _ticketService.GetTickets();
 
                 TicketsItemSource = gettickets;
+
                 MessageBox.Show("Successfully");
             });
         }

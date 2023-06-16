@@ -27,5 +27,10 @@ namespace Ticket_task.Domain.Services
 
             return new ObservableCollection<Schedule>(result);
         }
+
+        public Schedule GetScheduleById(int id)
+        {
+            return _repository.GetData(id);
+        }
     }
 }
