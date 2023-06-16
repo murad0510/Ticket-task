@@ -17,15 +17,15 @@ namespace Ticket_task.DataAccess.SqlServer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Schedule()
         {
-            this.Airplanes = new HashSet<Airplane>();
+            this.Tickets = new HashSet<Ticket>();
         }
     
         public int Id { get; set; }
         public Nullable<int> CityId { get; set; }
         public System.DateTime StartDateTime { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Airplane> Airplanes { get; set; }
         public virtual City City { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

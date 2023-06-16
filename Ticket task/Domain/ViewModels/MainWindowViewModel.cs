@@ -151,13 +151,13 @@ namespace Ticket_task.Domain.ViewModels
 
             SelectionChangedSchedules = new RelayCommand((obj) =>
             {
-                try
-                {
-                    AirplanesItemSource = _airplaneService.GetIdAirplanes(ScheduleSelectedItem.Id);
-                }
-                catch (Exception)
-                {
-                }
+                //try
+                //{
+                //    AirplanesItemSource = _airplaneService.GetIdAirplanes(ScheduleSelectedItem.Id);
+                //}
+                //catch (Exception)
+                //{
+                //}
             });
 
             SelectionChangedAirplanes = new RelayCommand((obj) =>
@@ -179,7 +179,7 @@ namespace Ticket_task.Domain.ViewModels
 
                 Airplane airplane = new Airplane();
 
-                airplane.ScheduleId = ScheduleSelectedItem.Id;
+                //airplane.ScheduleId = ScheduleSelectedItem.Id;
 
                 airplane.PilotId = Airplane.PilotId;
                 //airplane.Pilot = Airplane.Pilot;
