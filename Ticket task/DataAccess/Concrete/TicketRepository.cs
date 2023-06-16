@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,16 @@ namespace Ticket_task.DataAccess.Concrete
 {
     public class TicketRepository : ITicketRepository
     {
-        private TravelDBEntities6 _context;
+        private TravelDBEntities7 _context;
 
         public TicketRepository()
         {   
-            _context = new TravelDBEntities6();
+            _context = new TravelDBEntities7();
         }
 
         public void AddData(Ticket data)
         {
-            _context.Tickets.Add(data);
+            _context.Entry(data).State = EntityState.Added;
             _context.SaveChanges();
         }
 

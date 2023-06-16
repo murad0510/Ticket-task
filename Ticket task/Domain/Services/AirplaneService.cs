@@ -24,6 +24,15 @@ namespace Ticket_task.Domain.Services
             _repository.AddData(airplane);
         }
 
+        public ObservableCollection<Airplane> GetIdAirplanes(int scheduleId)
+        {
+            var result = from s in _repository.GetAll()
+                         where s.Id == scheduleId
+                         select s;
+
+            return new ObservableCollection<Airplane>(result.Distinct());
+        }
+
         public Airplane AirplaneGetById(int id)
         {
             return _repository.GetData(id);

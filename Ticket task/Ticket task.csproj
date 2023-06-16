@@ -62,7 +62,9 @@
     <Reference Include="Remotion.Linq.EagerFetching, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.EagerFetching.2.2.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -114,37 +116,37 @@
     <Compile Include="DataAccess\Concrete\ScheduleRepository.cs" />
     <Compile Include="DataAccess\Concrete\TicketRepository.cs" />
     <Compile Include="DataAccess\SqlServer\Airplane.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\SqlServer\City.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\SqlServer\FlightType.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\SqlServer\Pilot.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\SqlServer\Schedule.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\SqlServer\Ticket.cs">
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\SqlServer\TravelEntityDataModel1.Context.cs">
+    <Compile Include="DataAccess\SqlServer\TravelIEntityDataModel3.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TravelEntityDataModel1.Context.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\SqlServer\TravelEntityDataModel1.cs">
+    <Compile Include="DataAccess\SqlServer\TravelIEntityDataModel3.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TravelEntityDataModel1.tt</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\SqlServer\TravelEntityDataModel1.Designer.cs">
+    <Compile Include="DataAccess\SqlServer\TravelIEntityDataModel3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TravelEntityDataModel1.edmx</DependentUpon>
+      <DependentUpon>TravelIEntityDataModel3.edmx</DependentUpon>
     </Compile>
     <Compile Include="Domain\Services\AirplaneService.cs" />
     <Compile Include="Domain\Services\CityService.cs" />
@@ -177,12 +179,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataAccess\SqlServer\TravelEntityDataModel1.edmx">
+    <EntityDeploy Include="DataAccess\SqlServer\TravelIEntityDataModel3.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TravelEntityDataModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>TravelIEntityDataModel3.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataAccess\SqlServer\TravelEntityDataModel1.edmx.diagram">
-      <DependentUpon>TravelEntityDataModel1.edmx</DependentUpon>
+    <None Include="DataAccess\SqlServer\TravelIEntityDataModel3.edmx.diagram">
+      <DependentUpon>TravelIEntityDataModel3.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -194,22 +196,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataAccess\SqlServer\TravelEntityDataModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelEntityDataModel1.edmx</DependentUpon>
-      <LastGenOutput>TravelEntityDataModel1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccess\SqlServer\TravelEntityDataModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelEntityDataModel1.edmx</DependentUpon>
-      <LastGenOutput>TravelEntityDataModel1.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\World_map.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataAccess\SqlServer\TravelIEntityDataModel3.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelIEntityDataModel3.edmx</DependentUpon>
+      <LastGenOutput>TravelIEntityDataModel3.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\SqlServer\TravelIEntityDataModel3.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelIEntityDataModel3.edmx</DependentUpon>
+      <LastGenOutput>TravelIEntityDataModel3.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -12,11 +12,11 @@ namespace Ticket_task.DataAccess.Concrete
     public class ScheduleRepository : IScheduleRepository
     {
 
-        private TravelDBEntities6 _context;
+        private TravelDBEntities7 _context;
 
         public ScheduleRepository()
         {
-            _context= new TravelDBEntities6();
+            _context= new TravelDBEntities7();
         }
 
         public void AddData(Schedule data)

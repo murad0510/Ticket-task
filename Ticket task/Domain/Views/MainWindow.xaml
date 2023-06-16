@@ -32,7 +32,7 @@
                 </ComboBox>
 
                 <Label Content="Airplanes" FontSize="20" Canvas.Top="30" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
-                <ComboBox SelectedItem="{Binding Airplane}" DisplayMemberPath="Name" IsEnabled="{Binding SchedulesIsEnable}" ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <ComboBox SelectedItem="{Binding Airplane}" DisplayMemberPath="Name" IsEnabled="{Binding AirplaneIsEnable}" ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding SelectionChangedAirplanes}"></i:InvokeCommandAction>

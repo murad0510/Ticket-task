@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PilotId" Type="int" />
+          <Property Name="ScheduleId" Type="int" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -65,6 +66,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Airplanes__Sched__2E1BDC42">
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="0..1" />
+          <End Role="Airplanes" Type="Self.Airplanes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Airplanes">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Schedules__CityI__286302EC">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
@@ -77,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__Airplan__300424B4">
+        <Association Name="FK__Tickets__Airplan__30F848ED">
           <End Role="Airplanes" Type="Self.Airplanes" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__FlightT__30F848ED">
+        <Association Name="FK__Tickets__FlightT__31EC6D26">
           <End Role="FlightTypes" Type="Self.FlightTypes" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__Schedul__31EC6D26">
+        <Association Name="FK__Tickets__Schedul__32E0915F">
           <End Role="Schedules" Type="Self.Schedules" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,19 +137,23 @@
             <End Role="Pilots" EntitySet="Pilots" />
             <End Role="Airplanes" EntitySet="Airplanes" />
           </AssociationSet>
+          <AssociationSet Name="FK__Airplanes__Sched__2E1BDC42" Association="Self.FK__Airplanes__Sched__2E1BDC42">
+            <End Role="Schedules" EntitySet="Schedules" />
+            <End Role="Airplanes" EntitySet="Airplanes" />
+          </AssociationSet>
           <AssociationSet Name="FK__Schedules__CityI__286302EC" Association="Self.FK__Schedules__CityI__286302EC">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Schedules" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__Airplan__300424B4" Association="Self.FK__Tickets__Airplan__300424B4">
+          <AssociationSet Name="FK__Tickets__Airplan__30F848ED" Association="Self.FK__Tickets__Airplan__30F848ED">
             <End Role="Airplanes" EntitySet="Airplanes" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__FlightT__30F848ED" Association="Self.FK__Tickets__FlightT__30F848ED">
+          <AssociationSet Name="FK__Tickets__FlightT__31EC6D26" Association="Self.FK__Tickets__FlightT__31EC6D26">
             <End Role="FlightTypes" EntitySet="FlightTypes" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__Schedul__31EC6D26" Association="Self.FK__Tickets__Schedul__31EC6D26">
+          <AssociationSet Name="FK__Tickets__Schedul__32E0915F" Association="Self.FK__Tickets__Schedul__32E0915F">
             <End Role="Schedules" EntitySet="Schedules" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -153,8 +170,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PilotId" Type="Int32" />
+          <Property Name="ScheduleId" Type="Int32" />
           <NavigationProperty Name="Pilot" Relationship="Self.FK__Airplanes__Pilot__2D27B809" FromRole="Airplanes" ToRole="Pilots" />
-          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Airplan__300424B4" FromRole="Airplanes" ToRole="Tickets" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Airplanes__Sched__2E1BDC42" FromRole="Airplanes" ToRole="Schedules" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Airplan__30F848ED" FromRole="Airplanes" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -171,7 +190,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__FlightT__30F848ED" FromRole="FlightTypes" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__FlightT__31EC6D26" FromRole="FlightTypes" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Pilot">
           <Key>
@@ -189,8 +208,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CityId" Type="Int32" />
           <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Airplanes" Relationship="Self.FK__Airplanes__Sched__2E1BDC42" FromRole="Schedules" ToRole="Airplanes" />
           <NavigationProperty Name="City" Relationship="Self.FK__Schedules__CityI__286302EC" FromRole="Schedules" ToRole="Cities" />
-          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Schedul__31EC6D26" FromRole="Schedules" ToRole="Tickets" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Schedul__32E0915F" FromRole="Schedules" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -200,9 +220,9 @@
           <Property Name="AirplaneId" Type="Int32" />
           <Property Name="FlightTypeId" Type="Int32" />
           <Property Name="ScheduleId" Type="Int32" />
-          <NavigationProperty Name="Airplane" Relationship="Self.FK__Tickets__Airplan__300424B4" FromRole="Tickets" ToRole="Airplanes" />
-          <NavigationProperty Name="FlightType" Relationship="Self.FK__Tickets__FlightT__30F848ED" FromRole="Tickets" ToRole="FlightTypes" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK__Tickets__Schedul__31EC6D26" FromRole="Tickets" ToRole="Schedules" />
+          <NavigationProperty Name="Airplane" Relationship="Self.FK__Tickets__Airplan__30F848ED" FromRole="Tickets" ToRole="Airplanes" />
+          <NavigationProperty Name="FlightType" Relationship="Self.FK__Tickets__FlightT__31EC6D26" FromRole="Tickets" ToRole="FlightTypes" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Tickets__Schedul__32E0915F" FromRole="Tickets" ToRole="Schedules" />
         </EntityType>
         <Association Name="FK__Airplanes__Pilot__2D27B809">
           <End Role="Pilots" Type="Self.Pilot" Multiplicity="0..1" />
@@ -216,7 +236,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__Airplan__300424B4">
+        <Association Name="FK__Airplanes__Sched__2E1BDC42">
+          <End Role="Schedules" Type="Self.Schedule" Multiplicity="0..1" />
+          <End Role="Airplanes" Type="Self.Airplane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Airplanes">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__Airplan__30F848ED">
           <End Role="Airplanes" Type="Self.Airplane" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -240,7 +272,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__FlightT__30F848ED">
+        <Association Name="FK__Tickets__FlightT__31EC6D26">
           <End Role="FlightTypes" Type="Self.FlightType" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -252,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tickets__Schedul__31EC6D26">
+        <Association Name="FK__Tickets__Schedul__32E0915F">
           <End Role="Schedules" Type="Self.Schedule" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TravelDBEntities6" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TravelDBEntities7" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Airplanes" EntityType="Self.Airplane" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="FlightTypes" EntityType="Self.FlightType" />
@@ -275,7 +307,11 @@
             <End Role="Pilots" EntitySet="Pilots" />
             <End Role="Airplanes" EntitySet="Airplanes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__Airplan__300424B4" Association="Self.FK__Tickets__Airplan__300424B4">
+          <AssociationSet Name="FK__Airplanes__Sched__2E1BDC42" Association="Self.FK__Airplanes__Sched__2E1BDC42">
+            <End Role="Schedules" EntitySet="Schedules" />
+            <End Role="Airplanes" EntitySet="Airplanes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__Airplan__30F848ED" Association="Self.FK__Tickets__Airplan__30F848ED">
             <End Role="Airplanes" EntitySet="Airplanes" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -283,11 +319,11 @@
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Schedules" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__FlightT__30F848ED" Association="Self.FK__Tickets__FlightT__30F848ED">
+          <AssociationSet Name="FK__Tickets__FlightT__31EC6D26" Association="Self.FK__Tickets__FlightT__31EC6D26">
             <End Role="FlightTypes" EntitySet="FlightTypes" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tickets__Schedul__31EC6D26" Association="Self.FK__Tickets__Schedul__31EC6D26">
+          <AssociationSet Name="FK__Tickets__Schedul__32E0915F" Association="Self.FK__Tickets__Schedul__32E0915F">
             <End Role="Schedules" EntitySet="Schedules" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
@@ -297,13 +333,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBEntities6">
+        <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBEntities7">
           <EntitySetMapping Name="Airplanes">
             <EntityTypeMapping TypeName="TravelDBModel.Airplane">
               <MappingFragment StoreEntitySet="Airplanes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
