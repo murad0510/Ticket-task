@@ -19,15 +19,6 @@ namespace Ticket_task.Domain.Services
             _repository = new AirplaneRepository();
         }
 
-        //public ObservableCollection<Airplane> GetIdAirplanes(int scheduleId)
-        //{
-        //    var result = from a in _repository.GetAll()
-        //                 //where a.ScheduleId == scheduleId
-        //                 select a;
-
-        //    return new ObservableCollection<Airplane>(result.Distinct());
-        //}
-
         public void AddAirplane(Airplane airplane)
         {
             _repository.AddData(airplane);

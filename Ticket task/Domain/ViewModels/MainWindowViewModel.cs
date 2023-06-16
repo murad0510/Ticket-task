@@ -117,8 +117,6 @@ namespace Ticket_task.Domain.ViewModels
             set { airplane = value; OnPropertyChanged(); }
         }
 
-
-
         private readonly CityService _cityService;
         private readonly SchedulesService _schedulesService;
         private readonly AirplaneService _airplaneService;
@@ -151,13 +149,15 @@ namespace Ticket_task.Domain.ViewModels
 
             SelectionChangedSchedules = new RelayCommand((obj) =>
             {
-                //try
-                //{
-                //    AirplanesItemSource = _airplaneService.GetIdAirplanes(ScheduleSelectedItem.Id);
-                //}
-                //catch (Exception)
-                //{
-                //}
+                try
+                {
+                    //AirplanesItemSource = _airplaneService.GetIdAirplanes(ScheduleSelectedItem.Id);
+                    //AirplanesItemSource = _schedulesService.GetIdAirplanes(ScheduleSelectedItem.Id);
+                    //AirplanesItemSource = _schedulesService.GetIdAirplanes(3);
+                }
+                catch (Exception)
+                {
+                }
             });
 
             SelectionChangedAirplanes = new RelayCommand((obj) =>

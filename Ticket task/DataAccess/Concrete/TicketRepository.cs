@@ -14,7 +14,7 @@ namespace Ticket_task.DataAccess.Concrete
         private TravelDBEntities6 _context;
 
         public TicketRepository()
-        {
+        {   
             _context = new TravelDBEntities6();
         }
 
